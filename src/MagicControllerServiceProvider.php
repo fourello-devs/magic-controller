@@ -23,6 +23,13 @@ class MagicControllerServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->bootForConsole();
         }
+
+        if (! function_exists('customResponse')) {
+            function customResponse($data = NULL, $message = NULL): ExtendedResponse
+            {
+                return new ExtendedResponse($data, $message);
+            }
+        }
     }
 
     /**
@@ -81,14 +88,5 @@ class MagicControllerServiceProvider extends ServiceProvider
         $this->commands([
             ExtendedMakeController::class,
         ]);
-
-         // Registering helpers
-
-        if (! function_exists('customResponse')) {
-            function customResponse($data = NULL, $message = NULL): ExtendedResponse
-            {
-                return new ExtendedResponse($data, $message);
-            }
-        }
     }
 }
