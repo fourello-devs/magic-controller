@@ -2,8 +2,6 @@
 
 namespace {{ namespace }};
 
-// JAMES CARLO IN DA HOUSE
-
 use {{ namespacedModel }};
 use {{ rootNamespace }}Http\Controllers\Controller;
 //use Illuminate\Http\Request;

@@ -78,8 +78,17 @@ class MagicControllerServiceProvider extends ServiceProvider
         ], 'magic-controller.views');*/
 
         // Registering package commands.
-         $this->commands([
-             ExtendedMakeController::class,
-         ]);
+        $this->commands([
+            ExtendedMakeController::class,
+        ]);
+
+         // Registering helpers
+
+        if (function_exists('customResponse') === false) {
+            function customResponse($data = NULL, $message = NULL): ExtendedResponse
+            {
+                return new ExtendedResponse($data, $message);
+            }
+        }
     }
 }
