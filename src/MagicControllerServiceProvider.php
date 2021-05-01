@@ -6,6 +6,7 @@ use FourelloDevs\MagicController\Console\Commands\ExtendedMakeController;
 use FourelloDevs\MagicController\Exceptions\Handler;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
 
 class MagicControllerServiceProvider extends ServiceProvider
@@ -27,8 +28,11 @@ class MagicControllerServiceProvider extends ServiceProvider
             $this->bootForConsole();
         }
 
+        Log::info('customResponse exists?', [function_exists('customResponse')]);
         // Register Helpers
         $this->registerHelpers();
+
+        Log::info('customResponse exists?', [function_exists('customResponse')]);
 
         // Register Custom Exception Handler
         $this->app->singleton(ExceptionHandler::class, Handler::class);
@@ -97,6 +101,7 @@ class MagicControllerServiceProvider extends ServiceProvider
      */
     public function registerHelpers(): void
     {
+        Log::info('I am here please');
         if (! function_exists('customResponse')) {
             /**
              * @param array|null $data
