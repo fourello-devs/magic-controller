@@ -103,6 +103,7 @@ class MagicControllerServiceProvider extends ServiceProvider
     {
         Log::info('I am here please');
         if (! function_exists('customResponse')) {
+            Log::info('I made it inside', [function_exists('customResponse')]);
             /**
              * @param array|null $data
              * @param string|null $message
@@ -112,6 +113,8 @@ class MagicControllerServiceProvider extends ServiceProvider
             {
                 return new ExtendedResponse($data, $message);
             }
+
+            Log::info('I made it outside', [function_exists('customResponse')]);
         }
     }
 }
