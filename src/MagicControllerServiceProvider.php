@@ -84,7 +84,7 @@ class MagicControllerServiceProvider extends ServiceProvider
 
          // Registering helpers
 
-        if (function_exists('customResponse') === false) {
+        if (! function_exists('customResponse')) {
             function customResponse($data = NULL, $message = NULL): ExtendedResponse
             {
                 return new ExtendedResponse($data, $message);
