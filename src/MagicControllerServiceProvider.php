@@ -3,6 +3,7 @@
 namespace FourelloDevs\MagicController;
 
 use FourelloDevs\MagicController\Console\Commands\ExtendedMakeController;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 
 class MagicControllerServiceProvider extends ServiceProvider
@@ -24,11 +25,8 @@ class MagicControllerServiceProvider extends ServiceProvider
             $this->bootForConsole();
         }
 
-        if (! function_exists('customResponse')) {
-            function customResponse($data = NULL, $message = NULL): ExtendedResponse
-            {
-                return new ExtendedResponse($data, $message);
-            }
+        if (File::exists(__DIR__ . '../helpers/CustomHelpers.php')){
+            require __DIR__ . '../helpers/CustomHelpers.php';
         }
     }
 
