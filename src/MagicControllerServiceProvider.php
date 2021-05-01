@@ -3,6 +3,8 @@
 namespace FourelloDevs\MagicController;
 
 use FourelloDevs\MagicController\Console\Commands\ExtendedMakeController;
+use FourelloDevs\MagicController\Exceptions\Handler;
+use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 
@@ -25,9 +27,13 @@ class MagicControllerServiceProvider extends ServiceProvider
             $this->bootForConsole();
         }
 
+        // Register Helpers
         if (File::exists(__DIR__ . '../helpers/CustomHelpers.php')){
             require __DIR__ . '../helpers/CustomHelpers.php';
         }
+
+        // Register Custom Exception Handler
+        $this->app->singleton(ExceptionHandler::class, Handler::class);
     }
 
     /**
