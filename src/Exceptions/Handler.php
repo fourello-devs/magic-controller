@@ -12,6 +12,8 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
+use function customResponse;
+
 /**
  * @author Jeremy Layson <jeremy.b.layson@gmail.com>
  * @since 2020-11-29
