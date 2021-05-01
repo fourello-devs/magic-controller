@@ -28,6 +28,12 @@ class MagicControllerServiceProvider extends ServiceProvider
             $this->bootForConsole();
         }
 
+        if(! function_exists('james')) {
+            function james() {
+                return 'James Carlo Luchavez';
+            }
+        }
+
         // Register Custom Exception Handler
         $this->app->singleton(ExceptionHandler::class, Handler::class);
     }
@@ -49,6 +55,12 @@ class MagicControllerServiceProvider extends ServiceProvider
         Log::info('customResponse exists?', [function_exists('customResponse')]);
         // Register Helpers
         $this->registerHelpers();
+
+        if(! function_exists('james')) {
+            function james() {
+                return 'James Carlo Luchavez';
+            }
+        }
 
         Log::info('customResponse exists?', [function_exists('customResponse')]);
     }
