@@ -95,10 +95,18 @@ class MagicControllerServiceProvider extends ServiceProvider
     /**
      * Register helpers file
      */
-    public function registerHelpers()
+    public function registerHelpers(): void
     {
-        if (File::exists(__DIR__ . '../helpers/CustomHelpers.php')){
-            require_once __DIR__ . '../helpers/CustomHelpers.php';
+        if (! function_exists('customResponse')) {
+            /**
+             * @param array|null $data
+             * @param string|null $message
+             * @return ExtendedResponse
+             */
+            function customResponse(?array $data = NULL, ?string $message = NULL): ExtendedResponse
+            {
+                return new ExtendedResponse($data, $message);
+            }
         }
     }
 }

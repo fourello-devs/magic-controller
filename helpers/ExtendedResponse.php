@@ -35,11 +35,11 @@ class ExtendedResponse
     public function __construct($data = NULL, $message = NULL)
     {
 
-        if (is_null($data) === FALSE) {
+        if (empty($data) === FALSE) {
             $this->data($data);
         }
 
-        if (is_null($message) === FALSE) {
+        if (empty($message) === FALSE) {
             $this->message($message);
         }
     }
