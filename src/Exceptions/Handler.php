@@ -6,13 +6,9 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
 use Illuminate\Auth\AuthenticationException;
-use App\Exceptions\UnauthorizedException;
 
 use Illuminate\Auth\Access\AuthorizationException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-
-use function customResponse;
 
 /**
  * @author Jeremy Layson <jeremy.b.layson@gmail.com>

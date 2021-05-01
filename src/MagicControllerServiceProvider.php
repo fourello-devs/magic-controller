@@ -28,9 +28,7 @@ class MagicControllerServiceProvider extends ServiceProvider
         }
 
         // Register Helpers
-        if (File::exists(__DIR__ . '../helpers/CustomHelpers.php')){
-            require __DIR__ . '../helpers/CustomHelpers.php';
-        }
+        $this->registerHelpers();
 
         // Register Custom Exception Handler
         $this->app->singleton(ExceptionHandler::class, Handler::class);
@@ -92,5 +90,15 @@ class MagicControllerServiceProvider extends ServiceProvider
         $this->commands([
             ExtendedMakeController::class,
         ]);
+    }
+
+    /**
+     * Register helpers file
+     */
+    public function registerHelpers()
+    {
+        if (File::exists(__DIR__ . '../helpers/CustomHelpers.php')){
+            require_once __DIR__ . '../helpers/CustomHelpers.php';
+        }
     }
 }
