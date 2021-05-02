@@ -86,7 +86,7 @@ class ExtendedMakeController extends ControllerMakeCommand
         ];
 
         foreach ($names as $name) {
-            $this->call('make:request', [
+            $this->call('magic:request', [
                 'name' => $name,
             ]);
         }
