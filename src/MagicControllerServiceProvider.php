@@ -46,6 +46,7 @@ class MagicControllerServiceProvider extends ServiceProvider
 
         // Register the service the package provides.
         $this->app->bind('extended-response', function () use ($data, $message) {
+            Log::info('params inside bind', [$data, $message]);
             return new ExtendedResponse($data, $message);
         });
     }
