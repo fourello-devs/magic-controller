@@ -55,7 +55,7 @@ class ExtendedMakeController extends ControllerMakeCommand
         $this->generateEvents();
 
         if (File::exists($path = __DIR__ . $stub) === false) {
-            $path = '/stubs/controller.plain.stub';
+            return parent::getStub();
         }
 
         return $path;
@@ -67,7 +67,7 @@ class ExtendedMakeController extends ControllerMakeCommand
      * The requests will be generated on App\Http\Requests\User\{Method}User (e.g. IndexUser)
      * By default, the requests will be TRUE (instead of Laravel's default of FALSE)
      * This allows you to work on the Controller by default
-     * See /stubs/request.stub for more information
+     * See /stubs/request.custom.stub for more information
      *
      * The requestsFolder parameter will be inserted before the Model folder
      * to allow to create versioned or custom requests

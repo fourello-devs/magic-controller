@@ -3,6 +3,7 @@
 namespace FourelloDevs\MagicController;
 
 use FourelloDevs\MagicController\Console\Commands\ExtendedMakeController;
+use FourelloDevs\MagicController\Console\Commands\ExtendedMakeRequest;
 use FourelloDevs\MagicController\Exceptions\Handler;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Support\Facades\File;
@@ -90,6 +91,7 @@ class MagicControllerServiceProvider extends ServiceProvider
         // Registering package commands.
         $this->commands([
             ExtendedMakeController::class,
+            ExtendedMakeRequest::class,
         ]);
     }
 
@@ -102,6 +104,5 @@ class MagicControllerServiceProvider extends ServiceProvider
         if (! function_exists('customResponse') && File::exists($path)) {
             require_once __DIR__ . '/../helpers/CustomHelpers.php';
         }
-        Log::info('Last part of register helpers', [function_exists('customResponse')]);
     }
 }
