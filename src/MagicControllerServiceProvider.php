@@ -28,11 +28,8 @@ class MagicControllerServiceProvider extends ServiceProvider
             $this->bootForConsole();
         }
 
-        if(! function_exists('james')) {
-            function james() {
-                return 'James Carlo Luchavez';
-            }
-        }
+        // Register Helpers
+        $this->registerHelpers();
 
         // Register Custom Exception Handler
         $this->app->singleton(ExceptionHandler::class, Handler::class);
@@ -51,18 +48,6 @@ class MagicControllerServiceProvider extends ServiceProvider
         $this->app->singleton('magic-controller', function ($app) {
             return new MagicController;
         });
-
-        Log::info('customResponse exists?', [function_exists('customResponse')]);
-        // Register Helpers
-        $this->registerHelpers();
-
-        if(! function_exists('james')) {
-            function james() {
-                return 'James Carlo Luchavez';
-            }
-        }
-
-        Log::info('customResponse exists?', [function_exists('customResponse')]);
     }
 
     /**
@@ -113,20 +98,23 @@ class MagicControllerServiceProvider extends ServiceProvider
      */
     public function registerHelpers(): void
     {
-        Log::info('I am here please');
-        if (! function_exists('customResponse')) {
-            Log::info('I made it inside', [function_exists('customResponse')]);
-            /**
-             * @param array|null $data
-             * @param string|null $message
-             * @return ExtendedResponse
-             */
-            function customResponse(?array $data = NULL, ?string $message = NULL): ExtendedResponse
-            {
-                return new ExtendedResponse($data, $message);
+        $exists = function_exists('customResponse');
+        Log::info('Before', [$exists]);
+        if(! $exists){
+            if (! function_exists('customResponse')) {
+                /**
+                 * @param array|null $data
+                 * @param string|null $message
+                 * @return ExtendedResponse
+                 */
+                function customResponse(?array $data = NULL, ?string $message = NULL): ExtendedResponse
+                {
+                    return new ExtendedResponse($data, $message);
+                }
             }
-
-            Log::info('I made it outside', [function_exists('customResponse')]);
+            $exists = function_exists('customResponse');
+            Log::info('After', [$exists]);
+            $this->registerHelpers();
         }
     }
 }
