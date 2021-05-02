@@ -4,7 +4,7 @@ namespace FourelloDevs\MagicController\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class MagicController extends Facade
+class ExtendedResponse extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -13,6 +13,6 @@ class MagicController extends Facade
      */
     protected static function getFacadeAccessor(): string
     {
-        return 'magic-controller';
+        return 'extended-response';
     }
 }

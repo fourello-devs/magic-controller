@@ -6,8 +6,8 @@
  */
 
 if (! function_exists('customResponse')) {
-    function customResponse(?array $data = NULL, ?string $message = NULL): \FourelloDevs\MagicController\ExtendedResponse
+    function customResponse(?array $data = NULL, ?string $message = NULL)
     {
-        return new \FourelloDevs\MagicController\ExtendedResponse($data, $message);
+        return resolve('extended-response');
     }
 }
