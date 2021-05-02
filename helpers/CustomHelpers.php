@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Log;
 if (! function_exists('customResponse')) {
     function customResponse(?array $data = NULL, ?string $message = NULL): ExtendedResponse
     {
-        Log::info('I was here so please work. :(', [class_exists('FourelloDevs\MagicController\ExtendedResponse')]);
+        Log::info('I was here so please work. :(', [class_exists('\FourelloDevs\MagicController\ExtendedResponse', true)]);
         return new ExtendedResponse($data, $message);
     }
 }
