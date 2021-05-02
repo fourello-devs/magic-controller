@@ -19,20 +19,42 @@ use Illuminate\Support\Str;
  */
 class ExtendedResponse
 {
+    /**
+     * @var array|AnonymousResourceCollection|Paginator|LengthAwarePaginator|null
+     */
     protected $data = [];
 
+    /**
+     * @var int
+     */
     protected $code = 200;
 
+    /**
+     * @var bool
+     */
     protected $success = TRUE;
 
+    /**
+     * @var string|array|null
+     */
     protected $message = '';
 
+    /**
+     * @var string
+     */
     protected $slug = '';
 
+    /**
+     * @var array
+     */
     protected $pagination = [];
 
-
-    public function __construct($data = NULL, $message = NULL)
+    /**
+     * ExtendedResponse constructor.
+     * @param array|AnonymousResourceCollection|Paginator|LengthAwarePaginator|null $data
+     * @param string|array|null $message
+     */
+    public function __construct($data = NULL, string $message = NULL)
     {
 
         if (empty($data) === FALSE) {
@@ -107,7 +129,10 @@ class ExtendedResponse
 
     public function message(string $value): ExtendedResponse
     {
-        if ($this->slug === '') {
+        if(is_array($value)) {
+            $value = implode(' ', $value);
+        }
+        if (empty($this->slug)) {
             // set slug too
             $this->slug = Str::slug($value, '_');
         }
@@ -120,7 +145,6 @@ class ExtendedResponse
     // implement a message translator based on slug given
     protected function translateMessage($fallback)
     {
-
         return $fallback;
     }
 
