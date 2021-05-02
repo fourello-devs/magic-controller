@@ -103,7 +103,7 @@ class MagicControllerServiceProvider extends ServiceProvider
         Log::info('Registering...', ['file_exists' => File::exists(__DIR__ . '/../helpers/CustomHelpers.php')]);
         if (! function_exists('customResponse') && File::exists(__DIR__ . '/../helpers/CustomHelpers.php')) {
             Log::info('Yes, it exists!');
-            require_once __DIR__ . '../helpers/CustomHelpers.php';
+            require_once __DIR__ . '/../helpers/CustomHelpers.php';
         }
         Log::info('Done registering...', [function_exists('customResponse')]);
     }
