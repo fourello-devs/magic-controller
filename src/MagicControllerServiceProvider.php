@@ -48,8 +48,6 @@ class MagicControllerServiceProvider extends ServiceProvider
 //        $this->app->singleton('magic-controller', function ($app) {
 //            return new MagicController;
 //        });
-
-        $this->registerHelpers();
     }
 
     /**
