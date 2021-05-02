@@ -29,7 +29,7 @@ class MustBeSlug implements Rule
      * @param  mixed  $value
      * @return bool
      */
-    public function passes($attribute, $value)
+    public function passes($attribute, $value): bool
     {
         return Str::of($value)->slug('_')->exactly($value);
     }
@@ -39,7 +39,7 @@ class MustBeSlug implements Rule
      *
      * @return string
      */
-    public function message()
+    public function message(): string
     {
         return 'The :attribute must be a lowercase string with no spaces and can have underscore as separator.';
     }

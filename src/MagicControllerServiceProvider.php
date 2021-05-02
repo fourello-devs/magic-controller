@@ -45,8 +45,9 @@ class MagicControllerServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/../config/magic-controller.php', 'magic-controller');
 
         // Register the service the package provides.
-        $this->app->bind('extended-response', function () use ($data, $message) {
-            return new ExtendedResponse($data, $message);
+        $this->app->bind('extended-response', function ($app) {
+            Log::info('app contents', [$app]);
+            return new ExtendedResponse;
         });
     }
 
@@ -100,7 +101,8 @@ class MagicControllerServiceProvider extends ServiceProvider
     {
         $path = __DIR__ . '/../helpers/CustomHelpers.php';
         if (! function_exists('customResponse') && File::exists($path)) {
-            require_once $path;
+            require_once __DIR__ . '/../helpers/CustomHelpers.php';
         }
+        Log::info('Last part of register helpers', [function_exists('customResponse')]);
     }
 }

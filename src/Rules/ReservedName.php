@@ -34,9 +34,9 @@ class ReservedName implements Rule
      * @param  mixed  $value
      * @return bool
      */
-    public function passes($attribute, $value)
+    public function passes($attribute, $value): bool
     {
-        $hasReservedWord = $this->reservedWords->contains(function ($reservedWord) {
+        $hasReservedWord = $this->reservedWords->contains(function ($reservedWord) use ($value) {
             return Str::contains($value, $reservedWord);
         });
 
@@ -48,7 +48,7 @@ class ReservedName implements Rule
      *
      * @return string
      */
-    public function message()
+    public function message(): string
     {
         return 'The :attribute must not contain reserved words';
     }

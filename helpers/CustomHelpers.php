@@ -5,7 +5,6 @@
  * @since 2020/11/24
  */
 
-use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -20,11 +19,7 @@ if (! function_exists('customResponse')) {
      */
     function customResponse($data = NULL, $message = NULL)
     {
-        Log::info('params', [$data, $message]);
-        try {
-            return app()->make('extended-response', ['data' => $data, 'message' => $message]);
-        } catch (BindingResolutionException $e) {
-            return resolve('extended-response');
-        }
+        Log::info('before app make', [$data, $message]);
+        return app('extended-response', ['data' => $data, 'message' => $message]);
     }
 }

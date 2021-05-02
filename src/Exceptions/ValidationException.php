@@ -3,39 +3,42 @@
 namespace FourelloDevs\MagicController\Exceptions;
 
 use Exception;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Support\Str;
 use App\Models\ErrorMessage;
+use Symfony\Component\HttpFoundation\Response;
 
-class ValidationException extends Exception
-{
+class ValidationException extends Exception {
 
-  protected $validator;
+    protected $validator;
 
-  public function render($request)
-  {
-    $errors = ($this->validator->errors())->toArray();
-    $key = array_key_first($errors);
-    $message = $errors[$key][0];
-    $slug = Str::slug($message, '_');
+    /**
+     * Create a new exception instance.
+     *
+     * @param Validator $validator
+     * @param Response|null $response
+     * @param string $errorBag
+     * @param $message
+     * @param $code
+     * @param $previous
+     */
+    public function __construct($validator, ?Response $response, string $errorBag, $message, $code, $previous)
+    {
+        $this->validator = $validator;
+        parent::__construct($message, $code, $previous);
+    }
 
-    return customResponse()
-      ->data([])
-      ->message($message)
-      ->failed(422)
-      ->generate();
-  }
+    public function render($request)
+    {
+        $errors = ($this->validator->errors())->toArray();
+        $key = array_key_first($errors);
+        $message = $errors[$key][0];
+        $slug = Str::slug($message, '_');
 
-
-  /**
-   * Create a new exception instance.
-   *
-   * @param  \Illuminate\Contracts\Validation\Validator  $validator
-   * @param  \Symfony\Component\HttpFoundation\Response|null  $response
-   * @param  string  $errorBag
-   * @return void
-   */
-  public function __construct($validator)
-  {
-      $this->validator = $validator;
-  }
+        return customResponse()
+            ->data([])
+            ->message($message)
+            ->failed(422)
+            ->generate();
+    }
 }

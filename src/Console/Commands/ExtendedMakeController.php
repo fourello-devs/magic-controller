@@ -44,7 +44,7 @@ class ExtendedMakeController extends ControllerMakeCommand
      */
     protected $description = 'Create model, model controller, request, and event classes automagically!';
 
-    public function getStub()
+    public function getStub(): string
     {
         $stub = '/../../../stubs/controller.custom.stub';
 

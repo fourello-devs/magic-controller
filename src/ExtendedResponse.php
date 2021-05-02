@@ -66,9 +66,15 @@ class ExtendedResponse
             $this->message($message);
         }
 
-        Log::info('constructor', [$data, $message]);
+        Log::info('er constructor', [$data, $message]);
     }
 
+    /**
+     * Set status code
+     *
+     * @param int $code
+     * @return $this
+     */
     public function code(int $code): ExtendedResponse
     {
         $this->code = $code;
@@ -76,8 +82,13 @@ class ExtendedResponse
         return $this;
     }
 
-    // generic success code
-    public function success($code = 200): ExtendedResponse
+    /**
+     * Generic success code
+     *
+     * @param int $code
+     * @return $this
+     */
+    public function success(int $code = 200): ExtendedResponse
     {
         $this->code = $code;
         $this->success = TRUE;
@@ -85,8 +96,13 @@ class ExtendedResponse
         return $this;
     }
 
-    // generic failure code
-    public function failed($code = 400): ExtendedResponse
+    /**
+     * Generic failure code
+     *
+     * @param int $code
+     * @return $this
+     */
+    public function failed(int $code = 400): ExtendedResponse
     {
         $this->code = $code;
         $this->success = FALSE;
@@ -94,8 +110,13 @@ class ExtendedResponse
         return $this;
     }
 
-    // lacks authentication method
-    // if auth middleware is not activated by default
+
+    /**
+     * Lacks authentication method
+     * If auth middleware is not activated by default
+     *
+     * @return $this
+     */
     public function unauthorized(): ExtendedResponse
     {
         $this->code = 401;
@@ -104,7 +125,11 @@ class ExtendedResponse
         return $this;
     }
 
-    // user permission specific errors
+    /**
+     * User permission specific errors
+     *
+     * @return $this
+     */
     public function forbidden(): ExtendedResponse
     {
         $this->code = 403;
@@ -113,7 +138,11 @@ class ExtendedResponse
         return $this;
     }
 
-    // model search related errors
+    /**
+     * Model search related errors
+     *
+     * @return $this
+     */
     public function notFound(): ExtendedResponse
     {
         $this->code = 404;
@@ -122,7 +151,12 @@ class ExtendedResponse
         return $this;
     }
 
-    // set a custom slug
+    /**
+     * Set a custom slug
+     *
+     * @param string $value
+     * @return $this
+     */
     public function slug(string $value): ExtendedResponse
     {
         $this->slug = $value;
@@ -130,7 +164,13 @@ class ExtendedResponse
         return $this;
     }
 
-    public function message(string $value): ExtendedResponse
+    /**
+     * Set message
+     *
+     * @param string|array|null $value
+     * @return $this
+     */
+    public function message($value): ExtendedResponse
     {
         if(is_array($value)) {
             $value = implode(' ', $value);
@@ -145,12 +185,23 @@ class ExtendedResponse
         return $this;
     }
 
-    // implement a message translator based on slug given
+    /**
+     * Implement a message translator based on slug given
+     *
+     * @param $fallback
+     * @return mixed
+     */
     protected function translateMessage($fallback)
     {
         return $fallback;
     }
 
+    /**
+     * Set data
+     *
+     * @param $value
+     * @return $this
+     */
     public function data($value): ExtendedResponse
     {
 
@@ -174,11 +225,21 @@ class ExtendedResponse
         return $this;
     }
 
+    /**
+     * Generate response
+     *
+     * @return JsonResponse
+     */
     public function generate(): JsonResponse
     {
         return $this->generateResponse();
     }
 
+    /**
+     * Generate response
+     *
+     * @return JsonResponse
+     */
     protected function generateResponse(): JsonResponse
     {
         return response()->json([

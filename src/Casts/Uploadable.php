@@ -39,7 +39,7 @@ class Uploadable implements CastsAttributes
      */
     public function get($model, $key, $value, $attributes)
     {
-        if (is_null($value) || $value == '') {
+        if (empty($value)) {
             return NULL;
         }
 
