@@ -98,18 +98,9 @@ class MagicControllerServiceProvider extends ServiceProvider
      */
     public function registerHelpers(): void
     {
-        $exists = function_exists('james');
-        Log::info('Before', [$exists]);
-        if(! $exists){
-
-            if (! function_exists('james')) {
-                function james(){
-                    return 'james';
-                }
-            }
-
-            $exists = function_exists('james');
-            Log::info('After', [$exists]);
+        if (! function_exists('customResponse') && File::exists(__DIR__ . '../helpers/CustomHelpers.php')){
+            Log::info('Yes, it exists!');
+            require_once __DIR__ . '../helpers/CustomHelpers.php';
         }
     }
 }

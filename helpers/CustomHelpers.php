@@ -5,8 +5,6 @@
  * @since 2020/11/24
  */
 
-use FourelloDevs\MagicController\ExtendedResponse;
-
 if (! function_exists('customResponse')) {
     /**
      * @param array|null $data
@@ -15,6 +13,6 @@ if (! function_exists('customResponse')) {
      */
     function customResponse(?array $data = NULL, ?string $message = NULL): ExtendedResponse
     {
-        return new ExtendedResponse($data, $message);
+        return new \FourelloDevs\MagicController\ExtendedResponse\ExtendedResponse($data, $message);
     }
 }
