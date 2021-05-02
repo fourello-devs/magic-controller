@@ -110,7 +110,6 @@ class MagicControllerServiceProvider extends ServiceProvider
 
             $exists = function_exists('james');
             Log::info('After', [$exists]);
-            $this->registerHelpers();
         }
     }
 }
