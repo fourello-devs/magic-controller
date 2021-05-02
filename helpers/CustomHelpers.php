@@ -5,13 +5,9 @@
  * @since 2020/11/24
  */
 
-use FourelloDevs\MagicController\ExtendedResponse;
-use Illuminate\Support\Facades\Log;
-
 if (! function_exists('customResponse')) {
-    function customResponse(?array $data = NULL, ?string $message = NULL): ExtendedResponse
+    function customResponse(?array $data = NULL, ?string $message = NULL): \FourelloDevs\MagicController\ExtendedResponse
     {
-        Log::info('I was here so please work. :(', [class_exists('\FourelloDevs\MagicController\ExtendedResponse', true)]);
-        return new ExtendedResponse($data, $message);
+        return new \FourelloDevs\MagicController\ExtendedResponse($data, $message);
     }
 }
