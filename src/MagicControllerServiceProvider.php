@@ -45,8 +45,10 @@ class MagicControllerServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/../config/magic-controller.php', 'magic-controller');
 
         // Register the service the package provides.
-        $this->app->bind('extended-response', function ($app) {
-            return new ExtendedResponse();
+        $data = [];
+        $message = '';
+        $this->app->bind('extended-response', function ($app) use ($data, $message) {
+            return new ExtendedResponse($data, $message);
         });
     }
 

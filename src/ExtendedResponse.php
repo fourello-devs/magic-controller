@@ -54,7 +54,7 @@ class ExtendedResponse
      * @param array|AnonymousResourceCollection|Paginator|LengthAwarePaginator|null $data
      * @param string|array|null $message
      */
-    public function __construct($data = NULL, string $message = NULL)
+    public function __construct($data = NULL, $message = NULL)
     {
 
         if (empty($data) === FALSE) {
