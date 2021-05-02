@@ -98,21 +98,17 @@ class MagicControllerServiceProvider extends ServiceProvider
      */
     public function registerHelpers(): void
     {
-        $exists = function_exists('customResponse');
+        $exists = function_exists('james');
         Log::info('Before', [$exists]);
         if(! $exists){
-            if (! function_exists('customResponse')) {
-                /**
-                 * @param array|null $data
-                 * @param string|null $message
-                 * @return ExtendedResponse
-                 */
-                function customResponse(?array $data = NULL, ?string $message = NULL): ExtendedResponse
-                {
-                    return new ExtendedResponse($data, $message);
+
+            if (! function_exists('james')) {
+                function james(){
+                    return 'james';
                 }
             }
-            $exists = function_exists('customResponse');
+
+            $exists = function_exists('james');
             Log::info('After', [$exists]);
             $this->registerHelpers();
         }
