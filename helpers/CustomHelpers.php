@@ -18,6 +18,6 @@ if (! function_exists('customResponse')) {
      */
     function customResponse($data = NULL, $message = NULL)
     {
-        return resolve('extended-response', ['data' => $data, 'message' => $message]);
+        return app('extended-response', ['data' => $data, 'message' => $message]);
     }
 }
