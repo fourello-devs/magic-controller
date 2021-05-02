@@ -45,9 +45,9 @@ class MagicControllerServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/../config/magic-controller.php', 'magic-controller');
 
         // Register the service the package provides.
-        $this->app->singleton('magic-controller', function ($app) {
-            return new MagicController;
-        });
+//        $this->app->singleton('magic-controller', function ($app) {
+//            return new MagicController;
+//        });
     }
 
     /**
@@ -57,7 +57,7 @@ class MagicControllerServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['magic-controller'];
+//        return ['magic-controller'];
     }
 
     /**
@@ -98,9 +98,11 @@ class MagicControllerServiceProvider extends ServiceProvider
      */
     public function registerHelpers(): void
     {
+        Log::info('Registering...');
         if (! function_exists('customResponse') && File::exists(__DIR__ . '../helpers/CustomHelpers.php')){
             Log::info('Yes, it exists!');
             require_once __DIR__ . '../helpers/CustomHelpers.php';
         }
+        Log::info('Done registering...', [function_exists('customResponse')]);
     }
 }

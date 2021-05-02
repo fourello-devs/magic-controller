@@ -9,10 +9,10 @@ if (! function_exists('customResponse')) {
     /**
      * @param array|null $data
      * @param string|null $message
-     * @return ExtendedResponse
+     * @return FourelloDevs\MagicController\ExtendedResponse
      */
-    function customResponse(?array $data = NULL, ?string $message = NULL): ExtendedResponse
+    function customResponse(?array $data = NULL, ?string $message = NULL): \FourelloDevs\MagicController\ExtendedResponse
     {
-        return new \FourelloDevs\MagicController\ExtendedResponse\ExtendedResponse($data, $message);
+        return new FourelloDevs\MagicController\ExtendedResponse($data, $message);
     }
 }
