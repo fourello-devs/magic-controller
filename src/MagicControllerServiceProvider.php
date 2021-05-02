@@ -48,6 +48,8 @@ class MagicControllerServiceProvider extends ServiceProvider
 //        $this->app->singleton('magic-controller', function ($app) {
 //            return new MagicController;
 //        });
+
+        $this->registerHelpers();
     }
 
     /**
@@ -98,8 +100,8 @@ class MagicControllerServiceProvider extends ServiceProvider
      */
     public function registerHelpers(): void
     {
-        Log::info('Registering...');
-        if (! function_exists('customResponse') && File::exists(__DIR__ . '../helpers/CustomHelpers.php')){
+        Log::info('Registering...', ['file_exists' => File::exists(__DIR__ . '../helpers/CustomHelpers.php')]);
+        if (! function_exists('customResponse') && File::exists(__DIR__ . '../helpers/CustomHelpers.php')) {
             Log::info('Yes, it exists!');
             require_once __DIR__ . '../helpers/CustomHelpers.php';
         }
