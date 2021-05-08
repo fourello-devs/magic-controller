@@ -29,9 +29,6 @@ class MagicControllerServiceProvider extends ServiceProvider
             $this->bootForConsole();
         }
 
-        // Register Helpers
-        $this->registerHelpers();
-
         // Register Custom Exception Handler
         $this->app->singleton(ExceptionHandler::class, Handler::class);
     }
@@ -93,16 +90,5 @@ class MagicControllerServiceProvider extends ServiceProvider
             ExtendedMakeController::class,
             ExtendedMakeRequest::class,
         ]);
-    }
-
-    /**
-     * Register helpers file
-     */
-    public function registerHelpers(): void
-    {
-        $path = __DIR__ . '/../helpers/CustomHelpers.php';
-        if (! function_exists('customResponse') && File::exists($path)) {
-            require_once __DIR__ . '/../helpers/CustomHelpers.php';
-        }
     }
 }

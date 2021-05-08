@@ -5,21 +5,19 @@
  * @since 2020/11/24
  */
 
-use Illuminate\Contracts\Foundation\Application;
+use FourelloDevs\MagicController\ExtendedResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\Log;
 
 if (! function_exists('customResponse')) {
     /**
      * @param array|AnonymousResourceCollection|Paginator|LengthAwarePaginator|null $data
      * @param string|array|null $message
-     * @return Application|mixed
+     * @return ExtendedResponse
      */
-    function customResponse($data = NULL, $message = NULL)
+    function customResponse($data = NULL, $message = NULL): ExtendedResponse
     {
-        Log::info('before app make', [$data, $message]);
         return app('extended-response', ['data' => $data, 'message' => $message]);
     }
 }

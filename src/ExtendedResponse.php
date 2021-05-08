@@ -6,7 +6,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 /**
@@ -57,7 +56,6 @@ class ExtendedResponse
      */
     public function __construct($data = NULL, $message = NULL)
     {
-
         if (empty($data) === FALSE) {
             $this->data($data);
         }
@@ -65,8 +63,6 @@ class ExtendedResponse
         if (empty($message) === FALSE) {
             $this->message($message);
         }
-
-        Log::info('er constructor', [$data, $message]);
     }
 
     /**
