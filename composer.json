@@ -20,7 +20,10 @@
     },
     "autoload": {
         "files": [
-            "helpers/CustomHelpers.php"
+            "helpers/CustomHelpers.php",
+            "src/Casts/*.php",
+            "src/Rules/*.php",
+            "src/Exceptions/*.php"
         ],
         "psr-4": {
             "FourelloDevs\\MagicController\\": "src/"
