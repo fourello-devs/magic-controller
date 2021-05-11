@@ -1,0 +1,31 @@
+<?php
+
+namespace {{ namespace }};
+
+use App\Models\AbstractModel;
+
+class {{ class }} extends AbstractModel
+{
+    use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        //
+    ];
+
+    /******** RELATIONSHIPS ********/
+
+    //
+
+    /***** ACCESSORS & MUTATORS *****/
+
+    //
+
+    /******** OTHER METHODS ********/
+
+    //
+}

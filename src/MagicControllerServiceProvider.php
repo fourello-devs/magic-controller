@@ -3,8 +3,11 @@
 namespace FourelloDevs\MagicController;
 
 use FourelloDevs\MagicController\Console\Commands\ExtendedMakeController;
+use FourelloDevs\MagicController\Console\Commands\ExtendedMakeModel;
 use FourelloDevs\MagicController\Console\Commands\ExtendedMakeRequest;
+use FourelloDevs\MagicController\Console\Commands\ExtendedMakeResource;
 use FourelloDevs\MagicController\Exceptions\Handler;
+use FourelloDevs\MagicController\Requests\FormRequest;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
@@ -43,6 +46,7 @@ class MagicControllerServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/../config/magic-controller.php', 'magic-controller');
 
         // Register the service the package provides.
+
         $this->app->bind('extended-response', function ($app, $params) {
             return new ExtendedResponse($params['data'], $params['message']);
         });
@@ -89,6 +93,8 @@ class MagicControllerServiceProvider extends ServiceProvider
         $this->commands([
             ExtendedMakeController::class,
             ExtendedMakeRequest::class,
+            ExtendedMakeResource::class,
+            ExtendedMakeModel::class,
         ]);
     }
 }

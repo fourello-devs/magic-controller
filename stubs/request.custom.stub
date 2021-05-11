@@ -2,7 +2,7 @@
 
 namespace {{ namespace }};
 
-use Illuminate\Foundation\Http\FormRequest;
+use FourelloDevs\MagicController\Requests\FormRequest;
 
 class {{ class }} extends FormRequest
 {
@@ -13,7 +13,7 @@ class {{ class }} extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return TRUE;
     }
 
     /**
@@ -35,7 +35,9 @@ class {{ class }} extends FormRequest
      */
     protected function prepareForValidation(): void
     {
-        //
+        $this->merge([
+            //
+        ]);
     }
 }
 

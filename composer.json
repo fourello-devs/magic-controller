@@ -1,6 +1,6 @@
 {
     "name": "fourello-devs/magic-controller",
-    "description": "An Artisan command to simplify model controller creation with the goodies",
+    "description": "An Artisan command to simplify model controller, request, and event creation.",
     "license": "MIT",
     "authors": [
         {
@@ -23,7 +23,8 @@
             "helpers/CustomHelpers.php",
             "src/Casts/*.php",
             "src/Rules/*.php",
-            "src/Exceptions/*.php"
+            "src/Exceptions/*.php",
+            "src/Requests/*.php"
         ],
         "psr-4": {
             "FourelloDevs\\MagicController\\": "src/"
@@ -40,7 +41,7 @@
                 "FourelloDevs\\MagicController\\MagicControllerServiceProvider"
             ],
             "aliases": {
-                "MagicController": "FourelloDevs\\MagicController\\Facades\\MagicController"
+                "MagicController": "FourelloDevs\\MagicController\\Facades\\ExtendedResponse"
             }
         }
     }

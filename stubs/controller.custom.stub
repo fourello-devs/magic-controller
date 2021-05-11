@@ -4,7 +4,6 @@ namespace {{ namespace }};
 
 use {{ namespacedModel }};
 use {{ rootNamespace }}Http\Controllers\Controller;
-//use Illuminate\Http\Request;
 
 // Custom Requests
 use App\Http\Requests\{{ requestFolder }}{{ model }}\Index{{ model }};
@@ -20,9 +19,13 @@ use App\Events\{{ requestFolder }}{{ model }}\{{ model }}Created;
 use App\Events\{{ requestFolder }}{{ model }}\{{ model }}Updated;
 use App\Events\{{ requestFolder }}{{ model }}\{{ model }}Deleted;
 
+// Other Imports
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+
 class {{ class }} extends Controller
 {
-    public function index(Index{{model}} $request)
+    public function index(Index{{model}} $request): JsonResponse
     {
         $data = new {{ model }};
 
@@ -36,12 +39,12 @@ class {{ class }} extends Controller
 
         return customResponse()
             ->data($data)
-            ->message('Successfully collected record')
+            ->message('Successfully collected record.')
             ->success()
             ->generate();
     }
 
-    public function store(Create{{model}} $request)
+    public function store(Create{{model}} $request): JsonResponse
     {
         $data = $request->all();
 
@@ -51,37 +54,34 @@ class {{ class }} extends Controller
 
         return customResponse()
             ->data($model)
-            ->message('Successfully created record')
+            ->message('Successfully created record.')
             ->success()
             ->generate();
     }
 
-    public function show(Show{{model}} $request, {{ model }} ${{ modelVariable }})
+    public function show(Show{{model}} $request, {{ model }} ${{ modelVariable }}): JsonResponse
     {
-
-
         event(new {{ model }}Fetched(${{ modelVariable }}));
 
         return customResponse()
             ->data(${{ modelVariable }})
-            ->message('Successfully fetched record')
+            ->message('Successfully fetched record.')
             ->success()
             ->generate();
     }
 
-    public function update(Update{{model}} $request, {{ model }} ${{ modelVariable }})
+    public function update(Update{{model}} $request, {{ model }} ${{ modelVariable }}): JsonResponse
     {
-
         event(new {{ model }}Updated(${{ modelVariable }}));
 
         return customResponse()
             ->data(${{ modelVariable }})
-            ->message('Successfully updated record')
+            ->message('Successfully updated record.')
             ->success()
             ->generate();
     }
 
-    public function destroy(Delete{{model}} $request, {{ model }} ${{ modelVariable }})
+    public function destroy(Delete{{model}} $request, {{ model }} ${{ modelVariable }}): JsonResponse
     {
         ${{ modelVariable }}->delete();
 
@@ -89,7 +89,20 @@ class {{ class }} extends Controller
 
         return customResponse()
             ->data(${{ modelVariable }})
-            ->message('Successfully deleted record')
+            ->message('Successfully deleted record.')
+            ->success()
+            ->generate();
+    }
+
+    public function restore(Request $request, ${{ modelVariable }}): JsonResponse
+    {
+        //{{ model }}::withTrashed()->find(${{ modelVariable }})->restore();
+
+        event(new {{ model }}Created(${{ modelVariable }}));
+
+        return customResponse()
+            ->data(${{ modelVariable }})
+            ->message('Successfully restored record.')
             ->success()
             ->generate();
     }

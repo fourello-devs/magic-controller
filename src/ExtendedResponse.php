@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 
 /**
  * @author Jeremy Layson <jeremy.b.layson@gmail.com>
+ * @author James Carlo Luchavez <carlo.luchavez@fourello.com>
  * @since 2020/11/29
  *
  * Usage
