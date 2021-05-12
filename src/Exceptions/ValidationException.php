@@ -2,6 +2,7 @@
 
 namespace FourelloDevs\MagicController\Exceptions;
 
+use Illuminate\Support\Arr;
 use Illuminate\Validation\ValidationException as BaseException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Str;
@@ -10,14 +11,12 @@ class ValidationException extends BaseException {
 
     public function render($request): JsonResponse
     {
-        $errors = ($this->validator->errors())->toArray();
-        $message = array_values($errors);
-        $slug = Str::slug($message[0], '_');
+        $slug = Str::slug($this->validator->errors()->first(), '_');
 
         return customResponse()
             ->data([])
             ->slug($slug)
-            ->message($message)
+            ->message(Arr::flatten($this->validator->errors()->messages()))
             ->failed(422)
             ->generate();
     }

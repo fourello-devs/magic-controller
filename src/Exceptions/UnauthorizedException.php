@@ -11,7 +11,7 @@ class UnauthorizedException extends Exception
     {
         return customResponse()
             ->data([])
-            ->message($this->getMessage() ?? 'You do not have the necessary permission to access this resource')
+            ->message('You do not have the necessary permission to access this resource.')
             ->failed(403)
             ->generate();
     }

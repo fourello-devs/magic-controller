@@ -18,21 +18,21 @@ class FormRequest extends BaseRequest
     /**
      * Override default failedAuthorization method.
      *
-     * @return UnauthorizedException
+     * @throws UnauthorizedException
      */
-    protected function failedAuthorization(): UnauthorizedException
+    protected function failedAuthorization(): void
     {
-        return new UnauthorizedException();
+        throw new UnauthorizedException();
     }
 
     /**
      * Override default failedValidation method.
      *
      * @param Validator $validator
-     * @return ValidationException
+     * @throws ValidationException
      */
-    protected function failedValidation(Validator $validator): ValidationException
+    protected function failedValidation(Validator $validator): void
     {
-        return new ValidationException($validator);
+        throw new ValidationException($validator);
     }
 }
