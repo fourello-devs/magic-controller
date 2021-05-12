@@ -36,9 +36,9 @@ class ExtendedResponse
     protected $success = TRUE;
 
     /**
-     * @var string|array|null
+     * @var array
      */
-    protected $message = '';
+    protected $message = [];
 
     /**
      * @var string
@@ -169,12 +169,16 @@ class ExtendedResponse
      */
     public function message($value): ExtendedResponse
     {
-        if(is_array($value)) {
-            $value = implode(' ', $value);
+        if (is_string($value)) {
+            $value = [$value];
         }
+        elseif (is_null($value)) {
+            $value = [];
+        }
+
+        // set slug too
         if (empty($this->slug)) {
-            // set slug too
-            $this->slug = Str::slug($value, '_');
+            $this->slug = Str::slug($value[0], '_');
         }
 
         $this->message = $this->translateMessage($value);

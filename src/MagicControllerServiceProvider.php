@@ -6,6 +6,7 @@ use FourelloDevs\MagicController\Console\Commands\ExtendedMakeController;
 use FourelloDevs\MagicController\Console\Commands\ExtendedMakeModel;
 use FourelloDevs\MagicController\Console\Commands\ExtendedMakeRequest;
 use FourelloDevs\MagicController\Console\Commands\ExtendedMakeResource;
+use FourelloDevs\MagicController\Console\Commands\MagicStarter;
 use FourelloDevs\MagicController\Exceptions\Handler;
 use FourelloDevs\MagicController\Requests\FormRequest;
 use Illuminate\Contracts\Debug\ExceptionHandler;
@@ -95,6 +96,7 @@ class MagicControllerServiceProvider extends ServiceProvider
             ExtendedMakeRequest::class,
             ExtendedMakeResource::class,
             ExtendedMakeModel::class,
+            MagicStarter::class,
         ]);
     }
 }
