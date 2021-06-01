@@ -12,7 +12,8 @@
     "homepage": "https://github.com/fourello-devs/magic-controller",
     "keywords": ["Laravel", "MagicController"],
     "require": {
-        "illuminate/support": "~7|~8"
+        "illuminate/support": "~7|~8",
+        "fourello-devs/custom-helper-functions": "@dev"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",
@@ -39,6 +40,15 @@
             ],
             "aliases": {
                 "MagicController": "FourelloDevs\\MagicController\\Facades\\ExtendedResponse"
+            }
+        }
+    },
+    "repositories": {
+        "fourello-devs/custom-helper-functions": {
+            "type": "path",
+            "url": "D:\\laragon\\www\\work\\Boilerplates\\Package_Building\\packages/fourello-devs/custom-helper-functions",
+            "options": {
+                "symlink": true
             }
         }
     }

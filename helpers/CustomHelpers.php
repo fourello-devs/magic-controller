@@ -21,22 +21,3 @@ if (! function_exists('customResponse')) {
         return app('extended-response', ['data' => $data, 'message' => $message]);
     }
 }
-
-if (! function_exists('array_filter_recursive')) {
-    /**
-     * @param array $arr
-     * @return array
-     */
-    function array_filter_recursive(array $arr): array
-    {
-        $result = [];
-        foreach ($arr as $key => $value) {
-            if(is_array($value) && empty($value) === FALSE){
-                $result[$key] = array_filter_recursive($value);
-            }else if(empty($value) === FALSE) {
-                $result[$key] = $value;
-            }
-        }
-        return $result;
-    }
-}
