@@ -2,8 +2,11 @@
 
 namespace FourelloDevs\MagicController;
 
+use App\Http\Resources\UserResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Str;
@@ -206,20 +209,28 @@ class ExtendedResponse
     public function data($value): ExtendedResponse
     {
 
-        if($value instanceof AnonymousResourceCollection){
-            $value = $value->resource;
-        }
-
-        if ($value instanceof Paginator || $value instanceof LengthAwarePaginator) {
-            // convert pagination to array
-            $pagination = $value->toArray();
+        if ($value instanceof ResourceCollection) {
+            $pagination = $value->response($this)->getData(TRUE);
             $data = $pagination['data'];
             unset($pagination['data']);
 
             // separate them on two different array keys to create uniformity
             $this->pagination = $pagination;
             $this->data = $data;
-        } else {
+        }
+
+//        if ($value instanceof Paginator || $value instanceof LengthAwarePaginator) {
+//            // convert pagination to array
+//            $pagination = $value->toArray();
+//            $data = $pagination['data'];
+//            unset($pagination['data']);
+//
+//            // separate them on two different array keys to create uniformity
+//            $this->pagination = $pagination;
+//            $this->data = $data;
+//        }
+
+        else {
             $this->data = $value;
         }
 
