@@ -210,7 +210,7 @@ class ExtendedResponse
     {
 
         if ($value instanceof ResourceCollection) {
-            $pagination = $value->response($this)->getData(TRUE);
+            $pagination = $value->response(request())->getData(TRUE);
             $data = $pagination['data'];
             unset($pagination['data']);
 
