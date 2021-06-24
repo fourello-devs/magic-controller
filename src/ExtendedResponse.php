@@ -208,7 +208,6 @@ class ExtendedResponse
      */
     public function data($value): ExtendedResponse
     {
-
         if ($value instanceof ResourceCollection) {
             $pagination = $value->response(request())->getData(TRUE);
             $data = $pagination['data'];
@@ -219,16 +218,16 @@ class ExtendedResponse
             $this->data = $data;
         }
 
-//        if ($value instanceof Paginator || $value instanceof LengthAwarePaginator) {
-//            // convert pagination to array
-//            $pagination = $value->toArray();
-//            $data = $pagination['data'];
-//            unset($pagination['data']);
-//
-//            // separate them on two different array keys to create uniformity
-//            $this->pagination = $pagination;
-//            $this->data = $data;
-//        }
+        else if ($value instanceof Paginator || $value instanceof LengthAwarePaginator) {
+            // convert pagination to array
+            $pagination = $value->toArray();
+            $data = $pagination['data'];
+            unset($pagination['data']);
+
+            // separate them on two different array keys to create uniformity
+            $this->pagination = $pagination;
+            $this->data = $data;
+        }
 
         else {
             $this->data = $value;
